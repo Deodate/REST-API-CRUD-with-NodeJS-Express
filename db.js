@@ -8,8 +8,6 @@ const pgPool = new Pool({
     port: 5432, // Default PostgreSQL port
 });
 
-pgPool.query('SELECT 1')
-    .then(res => console.log('Connected to PostgreSQL:', res.rows[0]))
-    .catch(err => console.error('Error connecting to PostgreSQL:', err.stack));
+
 
 module.exports = pgPool;
