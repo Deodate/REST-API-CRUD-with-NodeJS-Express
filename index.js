@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const db = require('./db'); // Assuming this imports your PostgreSQL database connection
+require('express-async-errors'); 
+const db = require('./db'); 
 const citizenRouter = require('./controllers/citizen.controller');
 
 // Middleware to use the citizenRouter for '/api/citizens' endpoint
@@ -8,7 +9,7 @@ app.use('/api/citizens', citizenRouter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-    console.log(err);
+    console.error(err.stack); // Log the error stack for debugging
     res.status(err.status || 500).send('Something went wrong');
 });
 
