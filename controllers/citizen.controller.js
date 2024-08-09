@@ -1,10 +1,11 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express'),
+router = express.Router()
 
-// Define routes
-router.get('/', (req, res) => {
-    res.send('List of citizens.');
-});
+const service = require('../service/citizen.service')
 
-// Export the router
+router.get('/', async(req, res) => {
+    const citizen = await service.getAllCitizen()
+    res.send(citizen)
+})
+
 module.exports = router;
